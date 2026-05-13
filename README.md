@@ -19,14 +19,16 @@ Windows 탐색기 우클릭 메뉴에서 파일/폴더명의 유니코드 정규
 2. `install_normalize_filename_context_menu.ps1` 을 **우클릭 → PowerShell로 실행** 합니다.
 3. 탐색기에서 폴더 우클릭 시 **"Normalize filenames to NFC"** 메뉴가 나타납니다.
 
-> 폴더를 다른 위치로 이동한 경우, `install_normalize_filename_context_menu.ps1` 을 다시 실행하면 레지스트리 경로가 자동으로 업데이트됩니다.
+> 설치 시 실행 파일들은 `%LOCALAPPDATA%\UnicodeFilenameTools` 로 복사되고, 레지스트리는 이 고정 경로를 바라봅니다. 따라서 원본 폴더를 이동/삭제해도 메뉴가 깨지지 않습니다.
 
 ## 제거 방법
 
 `uninstall_normalize_filename_context_menu.ps1` 을 **우클릭 → PowerShell로 실행** 합니다.
 
+제거 시 레지스트리 메뉴와 `%LOCALAPPDATA%\UnicodeFilenameTools` 폴더를 함께 삭제합니다.
+
 ## 동작 방식
 
 - 폴더 우클릭 메뉴에서 실행 시 해당 폴더와 모든 하위 폴더를 재귀적으로 검색하여 파일/폴더명을 NFC 정규화합니다.
 - 배경(빈 공간) 우클릭 메뉴에서 실행 시 현재 폴더를 대상으로 합니다.
-- 모든 경로는 스크립트 위치 기준 상대 경로로 동작하므로 폴더 이동에 영향 없습니다.
+- 실제 실행 경로는 설치 시 복사된 `%LOCALAPPDATA%\UnicodeFilenameTools` 기준입니다.
